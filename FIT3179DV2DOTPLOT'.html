@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dot Map with Grid Lines</title>
+
+  <!-- Vega and Vega-Lite libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+  
+</head>
+<body>
+  <h1>Dot Map for Public Toilets in Australia with Grid Lines</h1>
+
+  <!-- Container for the chart -->
+  <div id="dot_map"></div>
+  <script type="text/javascript">
+    var spec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "description": "Dot map showing public toilet locations in Australia with grid lines.",
+      "width": 800,
+      "height": 600,
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/vega/vega-datasets/master/data/world-110m.json",
+            "format": {
+              "type": "topojson",
+              "feature": "countries"
+            }
+          },
+          "projection": {
+            "type": "mercator",
+            "scale": 1000,
+            "center": [133, -27],
+            "translate": [400, 300]
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "lightgray",
+            "stroke": "white"
+          }
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/3179Jae/3179/main/Toilets%20-%20Dot%20map.csv",  // CSV 파일 경로
+            "format": {"type": "csv"}
+          },
+          "projection": {
+            "type": "mercator",
+            "scale": 1000,
+            "center": [133, -27],
+            "translate": [400, 300]
+          },
+          "mark": "circle",
+          "encoding": {
+            "longitude": {
+              "field": "Longitude",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "Latitude",
+              "type": "quantitative"
+            },
+            "size": {"value": 10},
+            "color": {"value": "steelblue"}
+          }
+        },
+        {
+          // Latitude grid lines
+          "data": {
+            "values": [
+              {"lat": -10}, {"lat": -20}, {"lat": -30}, {"lat": -40}
+            ]
+          },
+          "mark": {"type": "rule", "stroke": "gray", "strokeWidth": 0.5},
+          "encoding": {
+            "y": {
+              "field": "lat",
+              "type": "quantitative",
+              "scale": {"domain": [-45, -10]},
+              "axis": null
+            }
+          }
+        },
+        {
+          // Longitude grid lines
+          "data": {
+            "values": [
+              {"lon": 110}, {"lon": 120}, {"lon": 130}, {"lon": 140}, {"lon": 150}
+            ]
+          },
+          "mark": {"type": "rule", "stroke": "gray", "strokeWidth": 0.5},
+          "encoding": {
+            "x": {
+              "field": "lon",
+              "type": "quantitative",
+              "scale": {"domain": [110, 155]},
+              "axis": null
+            }
+          }
+        }
+      ]
+    };
+
+    vegaEmbed('#dot_map', spec);
+  </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <h1>Number of Public Toilets by State in Australia</h1>
+  <div id="vis"></div>
+  <script type="text/javascript">
+    var spec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "width": 600,
+      "height": 400,
+      "data": {
+        "url": "https://raw.githubusercontent.com/3179Jae/3179/main/ToiletsHistogram.csv",
+        "format": {
+          "type": "csv"
+        }
+      },
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "State",
+          "type": "nominal",
+          "title": "State",
+          "sort": "-y"
+        },
+        "y": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "title": "Number of Facilities"
+        },
+        "color": {
+          "field": "State",
+          "type": "nominal",
+          "title": "State"
+        },
+        "tooltip": [
+          {"field": "State", "type": "nominal", "title": "State"},
+          {"aggregate": "count", "type": "quantitative", "title": "Number of Facilities"}
+        ]
+      }
+    };
+    
+    vegaEmbed('#vis', spec).then(function(result) {
+      // Access the Vega view instance as result.view
+    }).catch(console.error);
+  </script>
+</body>
+</html>
