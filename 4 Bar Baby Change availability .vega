@@ -6,14 +6,14 @@
         "format": { "type": "csv" }
     },
     "transform": [
-        { "aggregate": [{ "op": "count", "as": "Number of Toilets" }], "groupby": ["FacilityType", "Babychange"] }
+        { "aggregate": [{ "op": "count", "as": "Number of Toilets" }], "groupby": ["FacilityType", "BabyChange"] }
     ],
     "mark": "bar",
     "encoding": {
         "x": { "field": "FacilityType", "type": "nominal", "axis": { "title": "Facility Type", "labelAngle": -45 } },
         "y": { "field": "Number of Toilets", "type": "quantitative", "axis": { "title": "Number of Toilets" } },
         "color": {
-            "field": "Babychange",
+            "field": "BabyChange",
             "type": "nominal",
             "scale": { "range": ["#2ca02c", "#ff7f0e"] },
             "legend": { "title": "Babychange Availability" }
