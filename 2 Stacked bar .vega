@@ -23,6 +23,11 @@
             "type": "nominal",
             "scale": { "domain": ["Male", "Female", "Unisex"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"] },
             "title": "Facility Type"
-        }
+        },
+        "tooltip": [
+            { "field": "State", "type": "ordinal", "title": "State" },
+            { "field": "Gender", "type": "nominal", "title": "Facility Type" },
+            { "aggregate": "count", "field": "Count", "type": "quantitative", "title": "Number of Facilities" }
+        ]
     }
 }
