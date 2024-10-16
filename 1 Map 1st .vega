@@ -45,7 +45,7 @@
                 "tooltip": [
                     { "field": "Name", "type": "nominal", "title": "Name" },
                     { "field": "FacilityType", "type": "nominal", "title": "Type" },
-                    { "field": "Address", "type": "nominal", "title": "Address" }
+                    { "field": "Address1", "type": "nominal", "title": "Address" }
                 ]
             }
         }
