@@ -16,7 +16,7 @@
     "encoding": {
         "x": { "field": "State", "type": "nominal", "axis": { "title": "State" } },
         "y": { "aggregate": "count", "type": "quantitative", "axis": { "title": "Number of Toilets" }, "scale": { "domain": [0, 9000] } },
-        "color": { "field": "State", "type": "nominal", "scale": { "scheme": "category20" }, "legend": { "title": "State" } }
+        "color": { "field": "State", "type": "nominal", "scale": { "scheme": "observable10" }, "legend": { "title": "State" } }
     },
     "selection": {
         "highlight": { "type": "single", "empty": "none", "on": "mouseover" }
