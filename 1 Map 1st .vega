@@ -1,0 +1,53 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A dot map showing the locations of public toilets in Australia.",
+    "width": 1000,
+    "height": 600,
+    "data": {
+        "url": "https://raw.githubusercontent.com/3179Jae/3179/refs/heads/main/Toilet_Clean1.csv",
+        "format": { "type": "csv" }
+    },
+    "projection": {
+        "type": "mercator"
+    },
+    "layer": [
+        {
+            "mark": {
+                "type": "geoshape",
+                "fill": "white",
+                "stroke": "black",
+                "strokeWidth": 2
+            },
+            "data": {
+                "url": "https://raw.githubusercontent.com/3179Jae/3179/refs/heads/main/ne_1.json",
+                "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+            }
+        },
+        {
+            "data": {
+                "url": "https://raw.githubusercontent.com/3179Jae/3179/refs/heads/main/ne_110m33.json",
+                "format": { "type": "topojson", "featurecla": "Admin-1 states provinces" }
+            },
+            "mark": {
+                "type": "geoshape",
+                "fill": null,
+                "stroke": "lightgray",
+                "strokeWidth": 1
+            }
+        },
+        {
+            "mark": "circle",
+            "encoding": {
+                "longitude": { "field": "Longitude", "type": "quantitative" },
+                "latitude": { "field": "Latitude", "type": "quantitative" },
+                "size": { "value": 10 },
+                "color": { "value": "#1f77b4" },
+                "tooltip": [
+                    { "field": "Name", "type": "nominal", "title": "Name" },
+                    { "field": "FacilityType", "type": "nominal", "title": "Type" },
+                    { "field": "Address", "type": "nominal", "title": "Address" }
+                ]
+            }
+        }
+    ]
+}

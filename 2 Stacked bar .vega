@@ -1,0 +1,26 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "url": "https://raw.githubusercontent.com/3179Jae/3179/refs/heads/main/Toilet_Clean4.csv"
+    },
+    "transform": [
+        {
+            "fold": ["Male", "Female", "Unisex"],
+            "as": ["Gender", "Count"]
+        },
+        {
+            "filter": { "field": "Count", "equal": "TRUE" }
+        }
+    ],
+    "mark": "bar",
+    "encoding": {
+        "x": { "field": "State", "type": "ordinal", "title": "Australian States" },
+        "y": { "aggregate": "count", "field": "Count", "type": "quantitative", "title": "Number of Facilities" },
+        "color": {
+            "field": "Gender",
+            "type": "nominal",
+            "scale": { "domain": ["Male", "Female", "Unisex"], "range": ["#1f77b4", "#ff7f0e", "#2ca02c"] },
+            "title": "Facility Type"
+        }
+    }
+}
