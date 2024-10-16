@@ -41,7 +41,7 @@
                 "longitude": { "field": "Longitude", "type": "quantitative" },
                 "latitude": { "field": "Latitude", "type": "quantitative" },
                 "size": { "value": 10 },
-                "color": { "value": "#1f77b4" },
+                "color": { "value": "#00008b" },
                 "tooltip": [
                     { "field": "Name", "type": "nominal", "title": "Name" },
                     { "field": "FacilityType", "type": "nominal", "title": "Type" },
