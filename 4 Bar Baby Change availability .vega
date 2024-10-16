@@ -15,10 +15,7 @@
         "color": {
             "field": "BabyChange",
             "type": "nominal",
-            "scale": { 
-                "domain": ["TRUE", "FALSE"],
-                "range": ["#000000", "#D3D3D3"]
-            },
+            "scale": { "range": ["#2ca02c", "#ff7f0e"] },
             "legend": { "title": "Babychange Availability" }
         }
     },
